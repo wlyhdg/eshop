@@ -1,0 +1,92 @@
+{% extends "gallery/index.html" %}
+
+{% block clothing_article %}
+
+	<div class="card">
+	  <img class="card-img-top x-image responsive" src="media/{{ cloth.image }}" alt="Card image cap">
+	  <div class="card-body">
+	    	<h5 class="card-title"> {{ cloth.brand|upper }} </h5>
+			<p class="card-text img-desc"><small> {{ cloth.description|capfirst }} </small></p>
+	  		{% if cloth.discount|floatformat != "0" %}
+	    		<p class="card-text price">
+					<del style="color:red;"> ${{ cloth.full_price }}</del> <span class="net-price">${{cloth.net_price}}</span> <br /> <small>{{cloth.discount|floatformat}}% OFF! </small>
+				</p>
+	    	
+	    	{% else %}
+	    	<p class="card-text price">${{ cloth.net_price }}</p>
+	    	{% endif %}
+			<form class="checkout" action="/api/charge/{{ cloth.id }}" method="POST">
+			  {% csrf_token %}
+			  <script
+			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			    data-key="pk_test_PW5ep51F9hps5g754PGwldIC"
+			    data-amount="{% widthratio cloth.net_price 1 100 %}"
+			    data-name="Demo Site"
+			    data-description="Example charge"
+			    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+			    data-locale="auto">
+			  </script>
+			</form>
+	    <!-- <a href="/api/charge/{{ cloth.id }}" class="btn btn-primary">BUY</a> -->
+	  </div>
+	</div>
+
+{% endblock %}
+
+{% block style %}
+<style>
+	body {
+		font-family: 'Lora', serif;
+	}
+	.top {
+		margin-top: 2.5%;
+	}
+	.icon {
+		height: 5%;
+		display: inline;
+		margin-right: 1.5%;
+		vertical-align: middle;
+	}
+	.checkout {
+		position: absolute;
+		bottom: 0;
+		right: 45;
+	}
+	.header {
+		margin-top: 2.5%;
+		display: inline;
+		vertical-align: middle;
+	}
+	.flexin {
+		display: inline-flex;
+	}
+	.card {
+		height: 85%;
+		margin: 20px;
+	}
+	.card-title{
+		height: 5%;
+	}
+	.img-desc {
+		height: 10%;
+	}
+	.price {
+		margin-top: 10px;
+	}
+	.net-price{
+		margin-bottom: 10px;
+	}
+	.net-price, .price, .card-title, .header {
+		font-family: 'Nunito Sans', sans-serif;
+	}
+	.x-image:hover {
+	    color:rgba(255,255,255,0.6);
+	    opacity: 0.7;
+	    transition: all 1s;
+	    -webkit-transition: all 1s;
+	}
+	.x-image:hover:after {
+    	opacity: 1;
+	}
+</style>
+{% endblock %}

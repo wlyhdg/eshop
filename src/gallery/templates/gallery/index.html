@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Merriweather|Nunito+Sans|Lora" rel="stylesheet">
+
+<head>
+	<title>e-Shop</title>
+</head>
+
+<body class="text-center">
+	<div class="top">
+		<img class="responsive icon" src="media/photos/misc/shopping-bag-2.png" /><h1 class="header">e-Shop</h1>
+	</div>
+<div class="container">
+	<hr />
+	{% for cloth_row in linedup_clothes %}
+		<div class="flexin row">
+			{% for cloth in cloth_row %}
+			<div class="col-lg-3">
+				{% block clothing_article %}
+				{% endblock %}
+			</div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+	
+</div>
+</body>
+
+{% block style %}
+{% endblock %}
