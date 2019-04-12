@@ -1,7 +1,7 @@
 # eshop
 Taking a poke at a quick e-commerce project. Worked on Python 3 and Django skills, interfacing with third-party interface (Stripe charge API), and api creation.
 
-In the eshop directory run:
+In the eshop > src directory run:
   python manage.py runserver
 
 open up your browser and enjoy the mock shopping.
