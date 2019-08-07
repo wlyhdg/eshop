@@ -122,7 +122,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-API_KEY = "sk_test_leoIP00FuL6GqSrE7vjqhb5W"
+API_KEY = "YOUR_API_KEY"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
